@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-card-title><h5>Games List</h5></mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let game of games">
+              <h3 mat-line>
+                      <a mat-button [routerLink]="['/getGameById', game.gameId]">{{game.gameId}}</a>
+              </h3>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <button mat-fab color="primary" [routerLink]="['/gameType']">Add</button>
+  </mat-card>

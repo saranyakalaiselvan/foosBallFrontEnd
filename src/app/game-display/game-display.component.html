@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-title><h3>Game Info</h3></mat-card-title>
+    <mat-card-content>
+    <mat-label><h3>Game Id</h3></mat-label>
+          <mat-list>
+                  <p>
+                      <b>{{game.gameId}}</b>
+                  </p>
+          </mat-list>
+        <mat-label><h3>Players</h3></mat-label>
+          <mat-list >
+              <mat-list-item *ngFor="let player of game.players">
+                  <p>
+                      <b>{{player.playerName}}</b>
+                  </p>
+              </mat-list-item>
+          </mat-list>
+        <mat-label *ngIf="playerNames"><h3>Winner Names</h3></mat-label>
+          <mat-list *ngFor="let player of playerNames">
+                  <p>
+                      <b>{{player}}</b>
+                  </p>
+          </mat-list>
+  </mat-card-content>
+  <button mat-fab color="primary" [routerLink]="['/games']">Games</button>
+</mat-card>

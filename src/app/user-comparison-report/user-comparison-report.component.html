@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-header>
+        <div><p> <b>User Comparison report is to compare the wins and losses for two given users </b></p></div>
+    </mat-card-header>
+    <div>
+        <mat-form-field>
+          <mat-label>Player1</mat-label>
+          <mat-select [(ngModel)]="player1" name="player1" (ngModelChange)="dataChanged('player1',$event)">
+            <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                {{player.playerName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Player2</mat-label>
+          <mat-select [(ngModel)]="player2" name="player2" (ngModelChange)="dataChanged('player2',$event)">
+            <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                {{player.playerName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="generateComparisonReport()"
+                 type="button">Generate Report</button>
+      </mat-card-actions>
+
+      <mat-card>
+        <mat-card-content>
+          <mat-list>
+            <div *ngIf="playersWincount">
+                <div><b>Player1 WinCount :{{playersWincount.playerId1WinCount}}</b></div>
+                <div><b> Player2 WinCount : {{playersWincount.playerId1WinCount}}</b></div>
+            </div>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+</mat-card>

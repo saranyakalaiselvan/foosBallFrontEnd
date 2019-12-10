@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <div><p> <b>User report is to identify the number of wins and the number of losses for a  particular user </b></p></div>
+    </mat-card-header>
+    <div>
+    <mat-form-field>
+        <mat-label>Player1</mat-label>
+        <mat-select [(ngModel)]="player1" name="player1" (ngModelChange)="dataChanged($event)">
+        <mat-option *ngFor="let player of playersList" [value]="player" >
+            {{player.playerName}}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </div>
+    <div *ngIf= playerInfo>
+        <div>Number of matches Won: {{playerInfo.winCount}}</div>
+        <div>Number of matches Lost: {{playerInfo.lossCount}}</div>
+    </div>
+</mat-card>

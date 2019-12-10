@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header>
+        <div><p> <b>Foos Ball Champions - Displaying upto first 10 rank players </b></p></div>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <tr>
+                <mat-list-item *ngFor="let player of players">
+                    <td>
+                        <h3 >
+                            {{player.playerName}}
+                        </h3>
+                    </td>
+                </mat-list-item>
+            </tr>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

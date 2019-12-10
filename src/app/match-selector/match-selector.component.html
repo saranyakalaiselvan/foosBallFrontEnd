@@ -1,0 +1,153 @@
+<mat-card>
+    <mat-card-header>
+        <div><p> <b>Save Game Data based on the number of players 1vs1 or 1vs2 or 2vs2 </b></p></div>
+    </mat-card-header>
+    <div class="match-types">
+      <mat-form-field>
+        <mat-label>Match Selector Type</mat-label>
+        <mat-select [(ngModel)]="gameType" name="gameType" (selectionChange)="gameTypeSelection()">
+          <mat-option *ngFor="let gameType of gameTypes;" [value]="gameType.id">
+              {{gameType.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="gameType">
+      <div class="row" *ngIf="gameType === '1vs1'">
+        <div>
+          <mat-form-field>
+            <mat-label>Player1</mat-label>
+            <mat-select [(ngModel)]="player1" name="player1" (ngModelChange)="dataChanged('Player 1','player1',$event)">
+              <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                  {{player.playerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="seperator"></div>
+        <div>
+          <mat-form-field>
+            <mat-label>Player2</mat-label>
+            <mat-select [(ngModel)]="player2" name="player2" (ngModelChange)="dataChanged('Player 2','player2',$event)">
+              <mat-option *ngFor="let player of playersList " [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                  {{player.playerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Winner Details</mat-label>
+                <mat-select [(ngModel)]="winnerTeamName" name="winnerTeamName" >
+                  <mat-option *ngFor="let player of teamPlayers | keyvalue"  [value]="player.key">
+                      {{player.key}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="gameType === '1vs2'">
+        <div><label>Enter TeamA Details</label></div>
+        <div>
+          <mat-form-field>
+            <mat-label>Player1</mat-label>
+            <mat-select [(ngModel)]="player1" name="player1" (ngModelChange)="dataChanged('Team A','player1',$event)">
+              <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                  {{player.playerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Player2</mat-label>
+            <mat-select [(ngModel)]="player2" name="player2" (ngModelChange)="dataChanged('Team A','player2',$event)">
+              <mat-option *ngFor="let player of playersList " [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                  {{player.playerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div><label>Enter TeamB Details</label></div>
+        <div>
+          <mat-form-field>
+            <mat-label>Player3</mat-label>
+            <mat-select [(ngModel)]="player3" name="player3" (ngModelChange)="dataChanged('Team B','player3',$event)">
+              <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                  {{player.playerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Winner Details</mat-label>
+            <mat-select [(ngModel)]="winnerTeamName" name="winnerTeamName" >
+              <mat-option *ngFor="let player of teamPlayers | keyvalue"  [value]="player.key">
+                  {{player.key}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="gameType === '2vs2'">
+        <div>
+            <mat-form-field>
+                <mat-label>Player1</mat-label>
+                <mat-select [(ngModel)]="player1" name="player1" (ngModelChange)="dataChanged('Team A','player1',$event)">
+                  <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                      {{player.playerName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Player2</mat-label>
+                <mat-select [(ngModel)]="player2" name="player2" (ngModelChange)="dataChanged('Team A','player2',$event)">
+                  <mat-option *ngFor="let player of playersList " [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                      {{player.playerName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Player3</mat-label>
+                <mat-select [(ngModel)]="player3" name="player3" (ngModelChange)="dataChanged('Team B','player3',$event)">
+                  <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                      {{player.playerName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Player4</mat-label>
+            <mat-select [(ngModel)]="player4" name="player4" (ngModelChange)="dataChanged('Team B','player4',$event)">
+              <mat-option *ngFor="let player of playersList" [value]="player" [disabled]="this.selectedPlayers.includes(player)">
+                  {{player.playerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Winner Details</mat-label>
+                <mat-select [(ngModel)]="winnerTeamName" name="winnerTeamName" >
+                  <mat-option *ngFor="let player of teamPlayers | keyvalue"  [value]="player.key">
+                      {{player.key}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+      </div>
+    </div>  
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="matchDetailsSubmit()"
+                 type="button">Save</button>
+        <a mat-button routerLink="/gameType">Cancel</a> 
+      </mat-card-actions>
+</mat-card>
